@@ -52,6 +52,7 @@ import com.github.benmanes.caffeine.cache.simulator.policy.multi.linked.Multilev
 import com.github.benmanes.caffeine.cache.simulator.policy.multi.linked.Demote;
 import com.github.benmanes.caffeine.cache.simulator.policy.multi.linked.Promote;
 import com.github.benmanes.caffeine.cache.simulator.policy.multi.BidiTinyLfuPolicy;
+import com.github.benmanes.caffeine.cache.simulator.policy.multi.BiDiFilterLRUPolicy;
 import com.github.benmanes.caffeine.cache.simulator.policy.opt.ClairvoyantPolicy;
 import com.github.benmanes.caffeine.cache.simulator.policy.opt.UnboundedPolicy;
 import com.github.benmanes.caffeine.cache.simulator.policy.others.AvgGDSF;
@@ -194,6 +195,7 @@ public final class Registry {
     registerMany(Demote.class, config -> Demote.policies(config, characteristics));
     registerMany(Promote.class, config -> Promote.policies(config, characteristics));
     registerMany(BidiTinyLfuPolicy.class, BidiTinyLfuPolicy::policies);
+    registerMany(BiDiFilterLRUPolicy.class,BiDiFilterLRUPolicy::policies);
   }
 
   private void registerSampled() {
