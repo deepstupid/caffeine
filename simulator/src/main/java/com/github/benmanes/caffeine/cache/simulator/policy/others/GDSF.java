@@ -143,7 +143,7 @@ public class GDSF implements Policy {
     while ((used + candidate.weight - victimsSize) > maximumSize) {
       pair = it.next();
       final double victimPriority = pair.first().doubleValue();
-      if (victimPriority > candidate.key) {
+      if (victimPriority > candidate.priority) {
         break;
       }
       final long victimKey = pair.second().longValue();
