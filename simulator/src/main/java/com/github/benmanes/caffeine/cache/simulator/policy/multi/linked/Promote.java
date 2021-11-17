@@ -15,7 +15,6 @@
  */
 package com.github.benmanes.caffeine.cache.simulator.policy.multi.linked;
 
-import static java.util.Locale.US;
 import static java.util.stream.Collectors.toSet;
 
 import java.util.Arrays;
@@ -25,8 +24,6 @@ import static com.github.benmanes.caffeine.cache.simulator.policy.Policy.Charact
 import java.util.Set;
 import java.util.stream.Stream;
 import java.util.Random;
-
-import org.apache.commons.lang3.StringUtils;
 
 import com.github.benmanes.caffeine.cache.simulator.BasicSettings;
 import com.github.benmanes.caffeine.cache.simulator.admission.Admission;
@@ -57,6 +54,7 @@ public final class Promote implements Policy {
   final long[] maximumSize;
   final Node[] sentinels;
   long[] currentSizes;
+  long levelOneWrites;
   long levelTwoWrites;
   final static boolean debug = false;
   final static boolean stats = true;
@@ -144,6 +142,9 @@ public final class Promote implements Policy {
         promoteHint = shouldPromoteUpwards(level);
         if (!promoteHint) {
           if (weight <= maximumSize[level]) {
+            if (level == 0) {
+              levelOneWrites++;
+            }
             if (level == 1) {
               levelTwoWrites++;
             }
@@ -234,6 +235,7 @@ public final class Promote implements Policy {
     if (stats) {
       System.out.println("level_1_hits=" + policyStats.hitCount(0));
       System.out.println("level_1_misses=" + policyStats.missCount(0));
+      System.out.println("level_1_writes=" + levelOneWrites);
       System.out.println("level_2_hits=" + policyStats.hitCount(1));
       System.out.println("level_2_misses=" + policyStats.missCount(1));
       System.out.println("level_2_writes=" + levelTwoWrites);

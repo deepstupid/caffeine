@@ -55,6 +55,7 @@ public final class MultilevelLinkedPolicy implements Policy {
   final long[] maximumSize;
   final Node[] sentinels;
   long[] currentSizes;
+  long levelOneWrites;
   long levelTwoWrites;
   final static boolean debug = false;
   final static boolean stats = true;
@@ -104,6 +105,9 @@ public final class MultilevelLinkedPolicy implements Policy {
           if (candidate.weight > maximumSize[level]) {
             candidate.moveToTail();
             continue;
+          }
+          if (level == 0) {
+            levelOneWrites++;
           }
           if (level == 1) {
             levelTwoWrites++;
@@ -157,6 +161,7 @@ public final class MultilevelLinkedPolicy implements Policy {
     if (stats) {
       System.out.println("level_1_hits=" + policyStats.hitCount(0));
       System.out.println("level_1_misses=" + policyStats.missCount(0));
+      System.out.println("level_1_writes=" + levelOneWrites);
       System.out.println("level_2_hits=" + policyStats.hitCount(1));
       System.out.println("level_2_misses=" + policyStats.missCount(1));
       System.out.println("level_2_writes=" + levelTwoWrites);
