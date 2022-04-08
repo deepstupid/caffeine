@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-qodana-
       - name: Qodana - Code Inspection
         uses: JetBrains/qodana-action@v2.0-eap
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: qodana-${{ matrix.java }}
           path: ${{ github.workspace }}/qodana
