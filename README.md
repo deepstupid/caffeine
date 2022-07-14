@@ -1,3 +1,20 @@
+# Lightweight Robust Size Aware Cache Management (Caffeine fork)
+https://arxiv.org/pdf/2105.08770.pdf
+
+"Modern key-value stores, object stores, Internet proxy caches, as well as Content Delivery Networks
+(CDN) often manage objects of diverse sizes, e.g., blobs, video files of different lengths, images with
+varying resolution, and small documents. In such workloads, size-aware cache policies outperform size-
+oblivious algorithms. Unfortunately, existing size-aware algorithms tend to be overly complicated and
+computationally expensive.
+
+Our work follows a more approachable pattern; we extend the prevalent (size-oblivious) TinyLFU
+cache admission policy to handle variable sized items. Implementing our approach inside two popular
+caching libraries only requires minor changes. We show that our algorithms yield competitive or better
+hit-ratios and byte hit-ratios compared to the state of the art size-aware algorithms such as AdaptSize,
+LHD, LRB, and GDSF. Further, a runtime comparison indicates that our implementation is faster by
+up to x3 compared to the best alternative, i.e., it imposes much lower CPU overhead."
+
+
 [![Build Status](https://github.com/ben-manes/caffeine/workflows/build/badge.svg)](https://github.com/ben-manes/caffeine/actions?query=workflow%3Abuild)
 [![Coverage Status](https://img.shields.io/coveralls/ben-manes/caffeine.svg)](https://coveralls.io/r/ben-manes/caffeine?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.ben-manes.caffeine/caffeine/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.ben-manes.caffeine/caffeine)
